@@ -7,13 +7,10 @@ const Navbar = () => {
     <div className={styles.navBarContainer}>
       <ul>
         <li>
-          <Link to='/home'>Home</Link>
+          <Link to='/'>Home</Link>
         </li>
         <li>
-          <Link to='/characters'>Characters</Link>
-        </li>
-        <li>
-          <Link to='/locations'>Locations</Link>
+          <Link to='/todos'>TODO List</Link>
         </li>
       </ul>
     </div>

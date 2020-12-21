@@ -1,15 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import Routes from './routes';
 import reportWebVitals from './reportWebVitals';
+import rootReducer from './redux/reducers/rootReducer';
 import './reset.css';
+
+const configureStore = () => {
+  const enhancer = composeWithDevTools();
+  return createStore(rootReducer, enhancer);
+};
+
+const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Routes />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

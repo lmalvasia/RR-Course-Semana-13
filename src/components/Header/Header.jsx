@@ -8,7 +8,7 @@ const Header = () => {
         Logo
       </div>
       <div className={styles.headerText}>
-        Rick and Morty
+        TODO List
       </div>
     </div>
   );

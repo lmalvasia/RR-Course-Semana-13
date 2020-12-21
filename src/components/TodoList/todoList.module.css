@@ -1,0 +1,31 @@
+.todosContainer {
+  width: 100%;
+  overflow: scroll;
+}
+
+.todosTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.todosTable th, .todosTable td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;  
+}
+
+.addTodoButton {
+  margin: 15px 0px;
+}
+
+.addTodoContainer {
+  margin-bottom: 15px;
+}
+
+.addTodoContainer input {
+  margin-right: 15px;
+}
+
+.completedTodo {
+  text-decoration: line-through;
+}
