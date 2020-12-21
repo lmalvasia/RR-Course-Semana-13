@@ -1,0 +1,5 @@
+.navBarSectionContainer {
+  display: flex;
+  height: 80%;
+  border: 1px solid #ccc;
+}

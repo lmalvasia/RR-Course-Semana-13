@@ -1,0 +1,22 @@
+.headerContainer {
+  display: flex;
+  height: 100px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  font-size: 36px;
+}
+
+.logo {
+  display: flex;
+  width: 20%;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #ccc;
+}
+
+.headerText {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,15 @@
+.charactersContainer {
+  width: 100%;
+  overflow: scroll;
+}
+
+.charactersTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.charactersTable th, .charactersTable td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;  
+}

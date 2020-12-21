@@ -1,0 +1,14 @@
+.navBarContainer {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  border-right: 1px solid #ccc;
+}
+
+.navBarContainer ul {
+  width: 80%;
+}
+
+.navBarContainer li {
+  padding: 10px;
+}
