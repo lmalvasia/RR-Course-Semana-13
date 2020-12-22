@@ -1,57 +1,57 @@
 import {
-  REQUEST_CHARACTERS,
-  RECEIVE_CHARACTERS,
-  FAILURE_CHARACTERS,
-  REQUEST_ADD_CHARACTER,
-  RECEIVE_ADD_CHARACTER,
-  FAILURE_ADD_CHARACTER,
-  REQUEST_DELETE_CHARACTER,
-  RECEIVE_DELETE_CHARACTER,
-  FAILURE_DELETE_CHARACTER
+  GET_CHARACTERS_FETCHING,
+  GET_CHARACTERS_FULFILLED,
+  GET_CHARACTERS_REJECTED,
+  ADD_CHARACTERS_FETCHING,
+  ADD_CHARACTERS_FULFILLED,
+  ADD_CHARACTERS_REJECTED,
+  DELETE_CHARACTERS_FETCHING,
+  DELETE_CHARACTERS_FULFILLED,
+  DELETE_CHARACTERS_REJECTED,
 } from '../../constants/actionTypes';
 
 const URL = 'https://server-weekly13.herokuapp.com/characters';
 
-const reqCharacters = () => ({
-  type: REQUEST_CHARACTERS,
+const getCharactersFetching = () => ({
+  type: GET_CHARACTERS_FETCHING,
 });
 
-const receiveCharacters = (payload) => ({
-  type: RECEIVE_CHARACTERS,
+const getChractersFulfilled = (payload) => ({
+  type: GET_CHARACTERS_FULFILLED,
   payload,
 });
 
-const failureCharacters = () => ({
-  type: FAILURE_CHARACTERS,
+const getCharactersRejected = () => ({
+  type: GET_CHARACTERS_REJECTED,
 });
 
 export const getCharacters = () => dispatch => {
-  dispatch(reqCharacters());
+  dispatch(getCharactersFetching());
   return fetch(URL)
     .then(data => data.json())
     .then(response => {
-      dispatch(receiveCharacters(response));
+      dispatch(getChractersFulfilled(response));
     })
     .catch(() => {
-      dispatch(failureCharacters());
+      dispatch(getCharactersRejected());
     });
 };
 
-const reqAddCharacter = () => ({
-  type: REQUEST_ADD_CHARACTER,
+const addCharacterFetching = () => ({
+  type: ADD_CHARACTERS_FETCHING,
 });
 
-const receiveAddCharacter = (payload) => ({
-  type: RECEIVE_ADD_CHARACTER,
+const addCharacterFullfiled = (payload) => ({
+  type: ADD_CHARACTERS_FULFILLED,
   payload,
 });
 
-const failureAddCharacter = () => ({
-  type: FAILURE_ADD_CHARACTER,
+const addCharacterRejected = () => ({
+  type: ADD_CHARACTERS_REJECTED,
 });
 
 export const addCharacter = character => dispatch => {
-  dispatch(reqAddCharacter());
+  dispatch(addCharacterFetching());
   return fetch(URL, {
     method: 'POST',
     headers: {
@@ -60,34 +60,34 @@ export const addCharacter = character => dispatch => {
     body: JSON.stringify(character)
   }).then(data => data.json())
     .then(response => {
-      dispatch(receiveAddCharacter(response));
+      dispatch(addCharacterFullfiled(response));
     })
     .catch(() => {
-      dispatch(failureAddCharacter());
+      dispatch(addCharacterRejected());
     });
 };
 
-const reqDeleteCharacter = () => ({
-  type: REQUEST_DELETE_CHARACTER,
+const deleteCharacterFetching = () => ({
+  type: DELETE_CHARACTERS_FETCHING,
 });
 
-const receiveDeleteCharacter = (payload) => ({
-  type: RECEIVE_DELETE_CHARACTER,
+const deleteCharacterFulfilled = (payload) => ({
+  type: DELETE_CHARACTERS_FULFILLED,
   payload,
 });
 
-const failureDeleteCharacter = () => ({
-  type: FAILURE_DELETE_CHARACTER,
+const deleteCharacterRejected = () => ({
+  type: DELETE_CHARACTERS_REJECTED,
 });
 
 export const deleteCharacter = id => dispatch => {
-  dispatch(reqDeleteCharacter());
+  dispatch(deleteCharacterFetching());
   return fetch(`${URL}/${id}`, { method: 'DELETE' })
     .then(data => data.json())
     .then(() => {
-      dispatch(receiveDeleteCharacter(id));
+      dispatch(deleteCharacterFulfilled(id));
     })
     .catch(() => {
-      dispatch(failureDeleteCharacter());
+      dispatch(deleteCharacterRejected());
     });
 };

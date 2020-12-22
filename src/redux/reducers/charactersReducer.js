@@ -1,13 +1,13 @@
 import {
-  REQUEST_CHARACTERS,
-  RECEIVE_CHARACTERS,
-  FAILURE_CHARACTERS,
-  REQUEST_ADD_CHARACTER,
-  RECEIVE_ADD_CHARACTER,
-  FAILURE_ADD_CHARACTER,
-  REQUEST_DELETE_CHARACTER,
-  RECEIVE_DELETE_CHARACTER,
-  FAILURE_DELETE_CHARACTER
+  GET_CHARACTERS_FETCHING,
+  GET_CHARACTERS_FULFILLED,
+  GET_CHARACTERS_REJECTED,
+  ADD_CHARACTERS_FETCHING,
+  ADD_CHARACTERS_FULFILLED,
+  ADD_CHARACTERS_REJECTED,
+  DELETE_CHARACTERS_FETCHING,
+  DELETE_CHARACTERS_FULFILLED,
+  DELETE_CHARACTERS_REJECTED,
 } from '../../constants/actionTypes';
 const initialState = {
   isLoading: false,
@@ -17,52 +17,52 @@ const initialState = {
 
 const todosReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_CHARACTERS:
+    case GET_CHARACTERS_FETCHING:
       return {
         ...state,
         isLoading: true,
       };
-    case RECEIVE_CHARACTERS:
+    case GET_CHARACTERS_FULFILLED:
       return {
         ...state,
         isLoading: false,
         list: action.payload
       };
-    case FAILURE_CHARACTERS:
+    case GET_CHARACTERS_REJECTED:
       return {
         ...state,
         isLoading: false,
         error: true
       };
-    case REQUEST_ADD_CHARACTER:
+    case ADD_CHARACTERS_FETCHING:
       return {
         ...state,
         isLoading: true,
       };
-    case RECEIVE_ADD_CHARACTER:
+    case ADD_CHARACTERS_FULFILLED:
       return {
         ...state,
         isLoading: false,
         list: [...state.list, action.payload]
       };
-    case FAILURE_ADD_CHARACTER:
+    case ADD_CHARACTERS_REJECTED:
       return {
         ...state,
         isLoading: false,
         error: true
       };
-    case REQUEST_DELETE_CHARACTER:
+    case DELETE_CHARACTERS_FETCHING:
       return {
         ...state,
         isLoading: true,
       };
-    case RECEIVE_DELETE_CHARACTER:
+    case DELETE_CHARACTERS_FULFILLED:
       return {
         ...state,
         isLoading: false,
         list: state.list.filter(character => character._id !== action.payload)
       };
-    case FAILURE_DELETE_CHARACTER:
+    case DELETE_CHARACTERS_REJECTED:
       return {
         ...state,
         isLoading: false,
