@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import todosReducer from './todosReducer';
+import charactersReducer from './charactersReducer';
 
 const rootReducer = combineReducers({
   // here the reducers
-  todos: todosReducer
+  characters: charactersReducer
 });
 
 export default rootReducer;

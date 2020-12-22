@@ -8,7 +8,7 @@ const Header = () => {
         Logo
       </div>
       <div className={styles.headerText}>
-        TODO List
+        Characters
       </div>
     </div>
   );
