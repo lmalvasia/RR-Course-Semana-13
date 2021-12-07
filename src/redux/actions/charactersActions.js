@@ -10,7 +10,7 @@ import {
   DELETE_CHARACTERS_REJECTED,
 } from '../../constants/actionTypes';
 
-const URL = 'https://server-weekly13.herokuapp.com/characters';
+const URL = 'http://localhost:4000/characters';
 
 const getCharactersFetching = () => ({
   type: GET_CHARACTERS_FETCHING,
@@ -25,17 +25,19 @@ const getCharactersRejected = () => ({
   type: GET_CHARACTERS_REJECTED,
 });
 
-export const getCharacters = () => dispatch => {
-  dispatch(getCharactersFetching());
-  return fetch(URL)
-    .then(data => data.json())
-    .then(response => {
-      dispatch(getChractersFulfilled(response));
-    })
-    .catch(() => {
-      dispatch(getCharactersRejected());
-    });
-};
+export const getCharacters = () => {
+  return (dispatch) => {
+    dispatch(getCharactersFetching());
+    fetch(URL)
+      .then(data => data.json())
+      .then(response => {
+        dispatch(getChractersFulfilled(response));
+      })
+      .catch(() => {
+        dispatch(getCharactersRejected());
+      });
+  }
+} 
 
 const addCharacterFetching = () => ({
   type: ADD_CHARACTERS_FETCHING,
@@ -52,7 +54,7 @@ const addCharacterRejected = () => ({
 
 export const addCharacter = character => dispatch => {
   dispatch(addCharacterFetching());
-  return fetch(URL, {
+  fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

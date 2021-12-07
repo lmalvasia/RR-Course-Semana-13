@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AddCharacter from './AddCharacter';
 import {
-  addCharacter as addCharacterAction,
-  getCharacters as getCharactersAction,
-  deleteCharacter as deleteCharacterAction
-} from '../../redux/actions/charactersActions';
-import styles from './characters.module.css';
-import { bindActionCreators } from 'redux';
-
-const Characters = ({
-  characters,
-  isLoading,
-  error,
   addCharacter,
   getCharacters,
   deleteCharacter
-}) => {
+} from '../../redux/actions/charactersActions';
+import styles from './characters.module.css';
+
+const Characters = () => {
+  const dispatch = useDispatch()
   const [showCharacterForm, toggleCharacterForm] = useState(false);
+  const characters = useSelector(store => store.characters.list)
+  const isLoading = useSelector(store => store.characters.isLoading)
+  const error = useSelector(store => store.characters.error)
 
   useEffect(() => {
-    getCharacters();
-  }, [getCharacters]);
+    dispatch(getCharacters());
+  }, [dispatch]);
 
   const addNewCharacter = character => {
-    addCharacter(character);
+    dispatch(addCharacter(character));
     toggleCharacterForm(!showCharacterForm);
   };
 
@@ -57,7 +53,7 @@ const Characters = ({
                 <td>{character.specie}</td>
                 <td>{character.gender}</td>
                 <td style={{textAlign: 'center'}}>
-                  <button onClick={() => deleteCharacter(character._id)}>X</button>
+                  <button onClick={() => dispatch(deleteCharacter(character._id))}>X</button>
                 </td>
               </tr>
             );
@@ -68,20 +64,4 @@ const Characters = ({
   )
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    addCharacter: addCharacterAction,
-    getCharacters: getCharactersAction,
-    deleteCharacter: deleteCharacterAction
-  }, dispatch);
-};
-
-const mapStateToProps = state => {
-  return {
-    isLoading: state.characters.isLoading,
-    error: state.characters.error,
-    characters: state.characters.list
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Characters);
+export default Characters;
